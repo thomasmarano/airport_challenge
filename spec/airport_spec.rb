@@ -11,12 +11,17 @@ describe Airport do
 
     describe '#land' do
         it "airport lands a plane" do
-          expect(@heathrow.land(@jet)).to eq @jet
+            expect(@heathrow.land(@jet)).to eq @jet
         end
 
         it 'prevents landing when weather is stormy' do
-          @weather.stormy = true
-          expect { @heathrow.land(@jet, @weather) }.to raise_error 'Landing Forbidden - STORMY weather'
+            @weather.stormy = true
+            expect { @heathrow.land(@jet, @weather) }.to raise_error 'Landing Forbidden - STORMY weather'
+        end
+
+        it 'prevents landing if hangar full (i.e. airport capacity is reached))' do
+            @heathrow.capacity = 0
+            expect { @heathrow.land(@jet) }.to raise_error 'Plane cannot land - capacity full'
         end
     end
 
@@ -39,12 +44,3 @@ describe Airport do
         end
     end
 end
-
-
-# it "should return an error if docking station is empty" do
-# end
-#
-# def release_bike
-#     fail 'There are no bikes!' if empty?
-#     @docks.shift()
-# end
