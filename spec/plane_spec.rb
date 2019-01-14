@@ -9,9 +9,7 @@ describe Plane do
 
     describe '#at_airport' do
         it 'confirms it is no longer at airport after takeoff' do
-            @heathrow.land(@jet)
-            @heathrow.takeoff(@jet)
             expect(@jet.leave_airport).to eq false
-          end 
+          end
     end
 end

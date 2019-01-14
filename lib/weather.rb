@@ -1,6 +1,6 @@
 class Weather
-    attr_accessor :weather
+    attr_accessor :stormy
     def initialize
-        @weather = 'stormy'
+        @stormy = false
     end
 end
