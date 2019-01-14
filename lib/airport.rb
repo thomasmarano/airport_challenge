@@ -1,16 +1,18 @@
+#require_relative 'weather'
+
 class Airport
-    attr_reader :planes
+    attr_reader :hangar
     def initialize
-        @planes = []
+        @hangar = []
     end
 
     def land(plane)
-        @planes.push(plane)
-        plane
+        @hangar.push(plane)
     end
 
     def takeoff(plane)
-        @planes.delete(plane)
+        @hangar.delete(plane)
+        plane.leave_airport
         plane
     end
 end
