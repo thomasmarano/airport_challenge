@@ -1,6 +1,10 @@
 class Weather
     attr_accessor :stormy
     def initialize
-        @stormy = false
+        num = rand(0..10)
+        num < 8 ? @stormy = false : @stormy = true
     end
+    # def initialize
+    #     @stormy = false
+    # end
 end
