@@ -12,9 +12,10 @@ class Airport
         @capacity = capacity
     end
 
-    def land(plane, weather = Weather.new)
+    def land(plane, weather)
         raise "Landing Forbidden - STORMY weather" if weather.stormy
         raise "Plane cannot land - capacity full" if @hangar.length >= @capacity
+        #raise "Plane already landed" if plane.at_airport
         @hangar.push(plane)
         plane.at_airport = true
         plane

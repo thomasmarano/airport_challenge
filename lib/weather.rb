@@ -4,7 +4,4 @@ class Weather
         num = rand(0..10)
         num < 8 ? @stormy = false : @stormy = true
     end
-    # def initialize
-    #     @stormy = false
-    # end
 end
