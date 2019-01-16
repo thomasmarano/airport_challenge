@@ -7,25 +7,34 @@ class Airport
 
     DEFAULT_CAPACITY = 10
 
-    def initialize (capacity = DEFAULT_CAPACITY)
+    def initialize (capacity = DEFAULT_CAPACITY, weather = Weather.new)
         @hangar = []
         @capacity = capacity
+        @weather = weather
     end
 
-    def land(plane, weather)
-        raise "Landing Forbidden - STORMY weather" if weather.stormy
-        raise "Plane cannot land - capacity full" if @hangar.length >= @capacity
+    def land(plane)
+        raise "Stormy weather" if stormy?
+        raise "Capacity full" if full?
         raise "Plane already landed" if plane.at_airport
         @hangar.push(plane)
         plane.returned_airport
         plane
     end
 
-    def takeoff(plane, weather)
-        raise "Takeoff forbidden - STORMY weather" if weather.stormy
-        raise "Plane already in air - cannot takeoff" if !plane.at_airport
+    def takeoff(plane)
+        raise "Stormy weather" if stormy?
+        raise "Plane already in air" if !plane.at_airport
         @hangar.delete(plane)
         plane.leave_airport
         plane
+    end
+
+    def stormy?
+        @weather.stormy?
+    end
+
+    def full?
+        @capacity <= @hangar.length
     end
 end
