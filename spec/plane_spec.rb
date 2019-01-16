@@ -9,7 +9,9 @@ describe Plane do
 
     describe '#at_airport' do
         it 'confirms it is no longer at airport after takeoff' do
-            @heathrow.takeoff(@jet)
+            weather = double("weather")
+            allow(weather).to receive(:stormy).and_return(false)
+            @heathrow.takeoff(@jet, weather)
             expect(@jet.at_airport).to eq false
           end
     end

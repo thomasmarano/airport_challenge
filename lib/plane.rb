@@ -7,8 +7,8 @@ class Plane
     def leave_airport
         @at_airport = false
     end
-    #
-    # def returned_airport
-    #     @at_airport = true
-    # end
+    
+    def returned_airport
+        @at_airport = true
+    end
 end

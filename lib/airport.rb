@@ -15,14 +15,15 @@ class Airport
     def land(plane, weather)
         raise "Landing Forbidden - STORMY weather" if weather.stormy
         raise "Plane cannot land - capacity full" if @hangar.length >= @capacity
-        #raise "Plane already landed" if plane.at_airport
+        raise "Plane already landed" if plane.at_airport
         @hangar.push(plane)
-        plane.at_airport = true
+        plane.returned_airport
         plane
     end
 
-    def takeoff(plane, weather = Weather.new)
+    def takeoff(plane, weather)
         raise "Takeoff forbidden - STORMY weather" if weather.stormy
+        raise "Plane already in air - cannot takeoff" if !plane.at_airport
         @hangar.delete(plane)
         plane.leave_airport
         plane
